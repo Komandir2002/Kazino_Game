@@ -4,20 +4,29 @@ slot = randint(1,30)
 bank = many
 def game():
     global bank
+    print('~~~Добро пожаловать в казино MAIN!\n'
+          'Попытайте свою удачи в этом казино.\n'
+          'Eсли угадайте то ваша ставка возвысится в 5 раз,\n'
+          'посмотрим ка как у вас с удачей поехали!~~~')
     try:
         while 1:
             print(f'Ваш нынешний баланс: {bank}')
-            com = input('1 Начало... \n2 конец...')
+            com = input('Сделайте свой выбор\n1 Играть \n2 Выйти\n')
             if com == '1':
                 insrt = int(input('Выберите слот: '))
                 stav = int(input('Сколько хотите поставить: '))
                 if insrt == slot and stav <= bank:
-                    bank += (stav*2)
+                    bank += (stav*5)
                     print('Вы угодали!')
                 elif slot != insrt and stav <= bank:
                     if bank > 0 and stav <= bank:
                         bank -= stav
                         print('Вы не угодали!')
+                elif bank == 0:
+                    print('Вы проиграли все свои денги')
+                    continue
+                elif stav > bank:
+                    print('У вас не хватает средств!')
             elif com == '2':
                 if bank < 1000:
                     print('Вы в проиграше')
